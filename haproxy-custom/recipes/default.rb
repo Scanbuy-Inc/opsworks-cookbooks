@@ -1,6 +1,6 @@
 # binary:
 cookbook_file '/usr/sbin/haproxy' do
-	source 'haproxy.bin'
+	source 'haproxy'
 	mode '0755'
 	owner 'root'
 	group 'root'
