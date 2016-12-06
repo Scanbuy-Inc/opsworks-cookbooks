@@ -12,7 +12,7 @@ directory '/etc/haproxy' do
 	mode '0755'
 	owner 'root'
 	group 'root'
-	action :create_if_missing
+	action :create
 end
 
 cookbook_file '/etc/haproxy/haproxy.cfg' do
