@@ -32,7 +32,16 @@ cookbook_file '/etc/init.d/haproxy' do
 	action :create_if_missing
 end
 
-execute "Add tomcat7 to chkconfig" do
+# dcoupon.eu SSL cert:
+cookbook_file '/etc/pki/tls/private/dcoupon-eu-wild.pem' do
+	source 'dcoupon-eu-wild.pem'
+	mode '0600'
+	owner 'root'
+	group 'root'
+	action :create_if_missing
+end
+
+execute "Add haproxy to chkconfig" do
   user "root"
   group "root"
   command "chkconfig --add haproxy"
