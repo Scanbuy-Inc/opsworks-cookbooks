@@ -47,7 +47,9 @@ puts "== Creating logrotate config and cronjob for #{webapp} =="
 template "#{conf_dir}/#{webapp}.conf" do
   source "prod.conf.erb"
   owner "root"
+  group "root"
   mode "0744"
+  action :create
   variables({
     :APPNAME => "#{webapp}",
     :NUMBER => "#{number}",
@@ -77,6 +79,8 @@ end
 template "/etc/crontab" do
   source "crontab.erb"
   owner "root"
+  group "root"
   mode "0644"
+  action :create
   variables({:APPNAME => "#{webapp}"})
 end

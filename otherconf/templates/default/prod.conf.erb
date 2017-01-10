@@ -6,10 +6,14 @@
         postrotate
                 lpath="/var/log/coupons"
                 rpath=$(date +"%Y/%m/%d")
-                ext=$(date +"%Y%m%d_%H%M%S")
+                incr=0
                 [ -d $lpath/<%=@APPNAME%> ] || mkdir -p $lpath/<%=@APPNAME%>
                 orig=$(find $lpath -regextype posix-awk -regex '.*/<%=@APPNAME%>.log.[0-9]{1,2}')
-                mv $orig $lpath/<%=@APPNAME%>/<%=@APPNAME%>_$ext.log
-                aws s3 cp $lpath/<%=@APPNAME%>/<%=@APPNAME%>_$ext.log s3://logs.dcoupon.<%=@URLEXT%>/prod/log<%=@CONTRACTORNUMBER%>/$rpath/<%=@APPNAME%><%=@NUMBER%>_$ext.log
+                for each in $orig; do
+                        ext=$(date +"%Y%m%d_%H%M%S" --date="$incr seconds");
+                        ((incr += 1));
+                	mv $each $lpath/<%=@APPNAME%>/<%=@APPNAME%>_$ext.log;
+	                aws s3 cp $lpath/<%=@APPNAME%>/<%=@APPNAME%>_$ext.log s3://logs.dcoupon.<%=@URLEXT%>/prod/log<%=@CONTRACTORNUMBER%>/$rpath/<%=@APPNAME%><%=@NUMBER%>_$ext.log;
+		done
         endscript
 }
