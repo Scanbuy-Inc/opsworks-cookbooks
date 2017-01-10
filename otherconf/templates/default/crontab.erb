@@ -20,4 +20,4 @@ HOME=/
 */15 * * * * root /usr/sbin/logrotate -vf /opt/logrotate.d/api2pos.conf 2>&1 >> /var/log/logrotate.log
 */15 * * * * root /usr/sbin/logrotate -vf /opt/logrotate.d/settlement.conf 2>&1 >> /var/log/logrotate.log
 @daily root /usr/sbin/logrotate -vf /opt/logrotate.d/tomcat.conf 2>&1 >> /var/log/logrotate.log
-15 1 * * * root for x in api2campaignmgr api2coupons campaignmgr mycoupons marketplace; do rm -rf /var/log/coupons/$x/$x\_$(date +"\%Y\%m\%d" --date="30 days ago")*.log; done;
+15 1 * * * root for x in api2pos api2campaignmgr api2coupons campaignmgr mycoupons marketplace; do rm -rf /var/log/coupons/$x/$x\_$(date +"\%Y\%m\%d" --date="30 days ago")*.log; done;
