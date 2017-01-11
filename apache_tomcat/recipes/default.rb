@@ -85,7 +85,7 @@ script "Download MSM JARs" do
   interpreter "bash"
   user "root"
   group "root"
-  uwd "#{lib_dir}"
+  cwd "#{lib_dir}"
   code <<-EOH
   wget -i /opt/msm_jarlist
   EOH
