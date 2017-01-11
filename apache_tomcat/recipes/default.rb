@@ -4,6 +4,7 @@ direct_download_url= "http://archive.apache.org/dist/tomcat/tomcat-7/v"+"#{direc
 install_dir=node['tomcat']['install_dir']
 webapps_base_dir="#{install_dir}/webapps"
 conf_dir="#{install_dir}/conf"
+lib_dir="#{install_dir}/lib"
 
 tomcat_user=node['tomcat']['tomcat_user']
 tomcat_group=node['tomcat']['tomcat_group']
@@ -65,4 +66,41 @@ else
   puts "  #{conf_dir}/server.xml does not exist, skip disabling autoDeploy block."
 end
 
+# MSM setup (context.xml):
+template "#{conf_dir}/context.xml" do
+  source "context.xml.erb"
+  owner "root"
+  group "root"
+  mode "0600"
+  action :create
+end
 
+# MSM setup (jars):
+cookbook_file "/opt/msm_jarlist" do
+  source "msm_jarlist"
+  mode 0600
+end
+
+script "Download MSM JARs" do
+  interpreter "bash"
+  user "root"
+  group "root"
+  uwd "#{lib_dir}"
+  code <<-EOH
+  wget -i /opt/msm_jarlist
+  EOH
+end
+
+cookbook_file "#{lib_dir}/objenesis-2.4.jar" do
+  source "objenesis-2.4.jar"
+  user "root"
+  group "root"
+  mode 0644
+end
+
+cookbook_file "#{lib_dir}/AmazonElastiCacheClusterClient-1.1.0.jar" do
+  source "AmazonElastiCacheClusterClient-1.1.0.jar"
+  user "root"
+  group "root"
+  mode 0644
+end
