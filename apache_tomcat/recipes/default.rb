@@ -98,8 +98,8 @@ cookbook_file "#{lib_dir}/objenesis-2.4.jar" do
   mode 0644
 end
 
-cookbook_file "#{lib_dir}/AmazonElastiCacheClusterClient-1.1.0.jar" do
-  source "AmazonElastiCacheClusterClient-1.1.0.jar"
+cookbook_file "#{lib_dir}/AmazonElastiCacheClusterClient-1.1.1.jar" do
+  source "AmazonElastiCacheClusterClient-1.1.1.jar"
   user "root"
   group "root"
   mode 0644
