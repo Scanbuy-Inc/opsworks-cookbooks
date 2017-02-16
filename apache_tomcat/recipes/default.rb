@@ -39,6 +39,14 @@ template "/etc/rc.d/init.d/tomcat7" do
   mode "0755"
 end
 
+# Add runlevel3 startup:
+link '/etc/rc3.d/S80tomcat7' do
+  to '/etc/rc.d/init.d/tomcat7'
+  group "root"
+  owner "root"
+  link_type :symbolic
+end
+
 execute "Add tomcat7 to chkconfig" do
   user "root"
   group "root"
