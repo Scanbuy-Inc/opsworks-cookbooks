@@ -35,6 +35,8 @@ node[:deploy].each do |application, deploy|
 
   if webapp_name == node[:opsworks][:instance][:hostname].chop || webapp_name == "ROOT"
     puts "=== Deploying #{webapp_name} ==="
+  elsif node[:opsworks][:instance][:hostname].chop == "campaignmgr" && ['api2campaign','api2coupons','mycoupons','market','mycoupons-dev-test'].include?webapp_name
+    puts "=== Deploying #{webapp_name} ==="
   else
     puts "=== Skip deploying undesired module: #{webapp_name} ==="
     next
