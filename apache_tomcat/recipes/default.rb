@@ -32,6 +32,7 @@ if node['deploy'][node[:opsworks][:instance][:hostname].chop]['environment']['JA
   javaopts = ''
 else
   javaopts = node['deploy'][node[:opsworks][:instance][:hostname].chop]['environment']['JAVA_OPTS']
+end
 
 template "#{install_dir}/bin/setenv.sh" do
   source "setenv.sh.erb"
