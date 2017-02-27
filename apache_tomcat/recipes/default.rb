@@ -28,11 +28,9 @@ execute "Unzip Apache Tomcat #{direct_download_version}" do
 end
 
 # check if JAVA_OPTS is empty:
-if node['deploy'][node[:opsworks][:instance][:hostname].chop]['environment']['JAVA_OPTS'].to_s.empty?
-  javaopts = ''
-else
+if node['deploy'][node[:opsworks][:instance][:hostname].chop]['environment']['JAVA_OPTS']
   javaopts = node['deploy'][node[:opsworks][:instance][:hostname].chop]['environment']['JAVA_OPTS']
-end
+end rescue NoMethodError
 
 template "#{install_dir}/bin/setenv.sh" do
   source "setenv.sh.erb"
