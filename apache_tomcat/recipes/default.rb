@@ -29,7 +29,7 @@ end
 
 # check if JAVA_OPTS is empty:
 if node['deploy'][node[:opsworks][:instance][:hostname].chop]['environment']['JAVA_OPTS'].to_s.empty?
-  javaopts = ' '
+  javaopts = ''
 else
   javaopts = node['deploy'][node[:opsworks][:instance][:hostname].chop]['environment']['JAVA_OPTS']
 
