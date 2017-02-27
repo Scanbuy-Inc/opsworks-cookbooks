@@ -1,5 +1,5 @@
 export JAVA_HOME=<%= node['java']['java_home'] %>/jre1.7.0_79
 
-export JAVA_OPTS="-Xms<%= (node['memory']['total'].to_i * 0.2 / 1024).to_i %>m -Xmx<%= (node['memory']['total'].to_i * 0.4 / 1024).to_i %>m -XX:PermSize=<%= (node['memory']['total'].to_i * 0.4 / 1024).to_i %>m -XX:MaxPermSize=<%= (node['memory']['total'].to_i * 0.5 / 1024).to_i %>m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled <%= node['deploy'][node[:opsworks][:instance][:hostname].chop]['environment']['JAVA_OPTS'] %>"
+export JAVA_OPTS="-Xms<%= (node['memory']['total'].to_i * 0.2 / 1024).to_i %>m -Xmx<%= (node['memory']['total'].to_i * 0.4 / 1024).to_i %>m -XX:PermSize=<%= (node['memory']['total'].to_i * 0.4 / 1024).to_i %>m -XX:MaxPermSize=<%= (node['memory']['total'].to_i * 0.5 / 1024).to_i %>m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled <%=@JAVAOPTS%>"
 
 export CATALINA_PID="$CATALINA_BASE/bin/catalina.pid"

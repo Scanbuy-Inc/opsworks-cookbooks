@@ -27,10 +27,19 @@ execute "Unzip Apache Tomcat #{direct_download_version}" do
   action :run
 end
 
+# check if JAVA_OPTS is empty:
+if node['deploy'][node[:opsworks][:instance][:hostname].chop]['environment']['JAVA_OPTS'].to_s.empty?
+  javaopts = ' '
+else
+  javaopts = node['deploy'][node[:opsworks][:instance][:hostname].chop]['environment']['JAVA_OPTS']
+
 template "#{install_dir}/bin/setenv.sh" do
   source "setenv.sh.erb"
   owner "#{tomcat_user}"
   mode "0755"
+  variables({
+    :JAVAOPTS => "#{javaopts}"
+  })
 end
 
 template "/etc/rc.d/init.d/tomcat7" do
