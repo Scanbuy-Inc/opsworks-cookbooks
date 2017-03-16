@@ -45,7 +45,7 @@ end
 puts "== Creating logrotate config and cronjob for #{webapp} =="
 # Create logrotate conf:
 apps=['api2coupons','api2pos','settlement','api2campaign','campaignmgr','mycoupons']
-apps.each{ |eachapp|
+apps.each do |eachapp|
   template "#{conf_dir}/#{eachapp}.conf" do
     source "prod.conf.erb"
     owner "root"
@@ -58,7 +58,7 @@ apps.each{ |eachapp|
       :CONTRACTORNUMBER => "#{contractornumber}",
       :URLEXT => "#{urlext}"
     })
-}
+  end
 end
 
 # Create catalina.out conf:
