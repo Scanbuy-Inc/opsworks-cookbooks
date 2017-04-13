@@ -10,4 +10,3 @@ end
 
 default["cloudwatchlogs"]["AGENT_LOGS"] = "/var/log/aws/opsworks/*.log"
 default["cloudwatchlogs"]["CHEF_LOGS"] = "/var/lib/aws/opsworks/chef/*.log"
-default["opsworks"]["cloud_watch_logs_configurations"] = nil
