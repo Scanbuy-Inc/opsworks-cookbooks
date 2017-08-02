@@ -14,3 +14,4 @@ cookbook 'rsyslog', '>= 1.11.0', git: 'git://github.com/opscode-cookbooks/rsyslo
 cookbook 'windows', '>= 1.30.0', git: 'git://github.com/opscode-cookbooks/windows.git', tag: 'v1.30.2'
 cookbook 'elasticsearch', '>= 2.2.0', git: 'git://github.com/elasticsearch/cookbook-elasticsearch.git', tag: 'v2.2.0'
 cookbook 'mongodb', git: 'git://github.com/edelight/chef-mongodb'
+cookbook 'runit', '~> 3.0.5'
