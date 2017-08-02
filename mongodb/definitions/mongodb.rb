@@ -176,6 +176,12 @@ define :mongodb_instance,
     action :nothing
   end
 
+  # Sys V init reload:
+  execute 'mongodb-daemon-reload' do
+    command '/etc/init.d/mongod reload'
+    action :nothing
+  end
+
   # init script
   template new_resource.init_file do
     cookbook new_resource.template_cookbook
@@ -195,6 +201,8 @@ define :mongodb_instance,
 
     if(platform_family?('rhel') && node['platform_version'].to_i >= 7)
       notifies :run, 'execute[mongodb-systemctl-daemon-reload]', :immediately
+    else
+      notifies :run, 'execute[mongodb-daemon-reload]', :immediately
     end
   end
 
