@@ -15,5 +15,7 @@
                         mv $each $lpath/<%=@APPNAME%>/<%=@APPNAME%>_$ext.log;
                         aws s3 cp $lpath/<%=@APPNAME%>/<%=@APPNAME%>_$ext.log s3://logs.dcoupon.<%=@URLEXT%>/dev/log<%=@CONTRACTORNUMBER%>/$rpath/<%=@APPNAME%><%=@NUMBER%>_$ext.log;
                 done
+                delext=$(date +"%Y%m%d_" --date="14 days ago")
+                rm -rf $lpath/<%=@APPNAME%>/<%=@APPNAME%>_$delext*log;
         endscript
 }
