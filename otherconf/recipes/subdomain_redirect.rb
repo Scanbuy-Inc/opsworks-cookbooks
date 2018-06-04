@@ -1,10 +1,11 @@
 install_dir=node['tomcat']['install_dir']
 conf_dir="#{install_dir}/conf"
+domain=node['dnszone']
 
-cookbook_file "#{conf_dir}/server.xml" do
+template "#{conf_dir}/server.xml" do
   source "server.xml"
-  mode '0600'
-  group 'root'
-  owner 'root'
+  owner "root"
+  group "root"
+  mode "0600"
   action :create
 end
