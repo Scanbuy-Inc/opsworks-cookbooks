@@ -141,17 +141,17 @@
                prefix="localhost_access_log." suffix=".txt"
                pattern="%h %l %u %t &quot;%r&quot; %s %b" />
 
-        <Host name="campaignmgr.<%= node[:dnszone] %>" appBase="webapps">
-            <Context path="" docBase="campaignmgr"/>
-        </Host>
+      </Host>
+      <Host name="campaignmgr.<%= node[:dnszone] %>" appBase="webapps">
+          <Context path="" docBase="campaignmgr"/>
+      </Host>
 
-        <Host name="mycoupons.<%= node[:dnszone] %>" appBase="webapps">
-            <Context path="" docBase="mycoupons"/>
-        </Host>
+      <Host name="mycoupons.<%= node[:dnszone] %>" appBase="webapps">
+          <Context path="" docBase="mycoupons"/>
+      </Host>
 
-        <Host name="mx.<%= node[:dnszone] %>" appBase="webapps">
-            <Context path="" docBase="market"/>
-        </Host>
+      <Host name="mx.<%= node[:dnszone] %>" appBase="webapps">
+          <Context path="" docBase="market"/>
       </Host>
     </Engine>
   </Service>
