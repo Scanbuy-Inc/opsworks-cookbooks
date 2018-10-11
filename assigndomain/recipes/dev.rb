@@ -3,8 +3,8 @@ cookbook_file "/opt/assigndomain.py" do
   mode 0500
 end
 
-params = "dev"+node[:opsworks][:instance][:hostname]+" "+node[:dnszone]+" "+node[:access_key]+" "+node[:secret_key]
-#puts #{params}
+params = "dev"+node[:opsworks][:instance][:hostname]+"."+node[:dnszone]+" "+node[:zoneid]
+puts #{params}
 
 execute "assigndomain" do
   command "/opt/assigndomain.py #{params}"
