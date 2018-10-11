@@ -3,6 +3,16 @@ cookbook_file "/opt/assigndomain.py" do
   mode 0500
 end
 
+execute "Update pip" do
+  command "pip install -U pip"
+  user "root"
+end
+
+execute "Install boto3" do
+  command "pip install boto3"
+  user "root"
+end
+
 params = node[:opsworks][:instance][:hostname]+"."+node[:dnszone]+" "+node[:zoneid]
 puts "#{params}"
 
