@@ -30,7 +30,7 @@ def modrec(R53C,ZID,ACT,RNAME,TYPE,MYIP):
         }
     )
 
-if len(sys.argv) = 3:
+if len(sys.argv) == 3:
     rname=sys.argv[1]
     zoneid=sys.argv[2]
 else:
