@@ -18,7 +18,7 @@ def modrec(R53C,ZID,ACT,RNAME,TYPE,MYIP):
                     'ResourceRecordSet': {
                         'Name': RNAME,
                         'Type': TYPE,
-                        'TTL': 123,
+                        'TTL': 300,
                         'ResourceRecords': [
                             {
                                 'Value': MYIP
