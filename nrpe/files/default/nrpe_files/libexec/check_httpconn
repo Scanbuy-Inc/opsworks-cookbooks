@@ -9,7 +9,7 @@ nc -nzw2 127.0.0.1 80 > /dev/null && port='80'
 nc -nzw2 127.0.0.1 8080 > /dev/null && port='8080'
 
 [ -f /tmp/httpconn ] && sudo rm -f /tmp/httpconn
-netstat -an | awk '$4~/:'$port'/{print}' > /tmp/httpconn
+netstat -tan |awk '$4~/[0-9]+:'$port'$/{print}' > /tmp/httpconn
 
 CONNS=`cat /tmp/httpconn |wc -l`
 ESTABLISHED=`grep "ESTABLISHED" /tmp/httpconn |wc -l`
